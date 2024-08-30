@@ -20,7 +20,8 @@ import {
   MonthlyDTO,
   MonthlyResponse,
   QuoteDTO,
-  QuoteResponse
+  QuoteResponse,
+  MarketStatusResponse
 } from './dto'
 import {
   getParseDailyAdjustedResponseMap,
@@ -238,6 +239,18 @@ export class StockTimeSeries extends Category {
       if (err instanceof ParseResponseError) throw err
 
       throw new AlphaVantageRequestError('fail to get quote data', err)
+    }
+  }
+
+  async marketStatus(): Promise<MarketStatusResponse> {
+    try {
+      const { data } = await this.api.get('/query', {
+        params: { function: Function.MARKET_STATUS }
+      })
+
+      return data
+    } catch (err) {
+      throw new AlphaVantageRequestError('fail to get market status data', err)
     }
   }
 }
