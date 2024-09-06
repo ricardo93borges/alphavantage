@@ -33,7 +33,8 @@ import {
   getParseWeeklyResponseMap,
   parseResponse,
   parseSearchResponse,
-  parseQuoteResponse
+  parseQuoteResponse,
+  parseMarketStatusResponse
 } from './utils'
 
 export class StockTimeSeries extends Category {
@@ -248,7 +249,7 @@ export class StockTimeSeries extends Category {
         params: { function: Function.MARKET_STATUS }
       })
 
-      return data
+      return parseMarketStatusResponse(data)
     } catch (err) {
       throw new AlphaVantageRequestError('fail to get market status data', err)
     }
