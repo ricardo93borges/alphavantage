@@ -4,5 +4,6 @@ export {
   DailyAdjustedResponse,
   WeeklyAdjustedResponse,
   MonthlyAdjustedResponse,
-  SearchResponse
+  SearchResponse,
+  MarketStatusResponse
 } from './dto/'

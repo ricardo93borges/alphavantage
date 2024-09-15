@@ -22,6 +22,7 @@
     - [Monthly](#monthly)
     - [Monthly Adjusted](#monthly-adjusted)
     - [Quote Endpoint](#quote-endpoint)
+    - [Market Status](#market-status-endpoint)
   - [Fundamental data](#fundamental-data)
     - [Company Overview](#company-overview)
     - [Earnings](#earnings)
@@ -479,6 +480,58 @@ av.stockTimeSeries.quote({ symbol: 'IBM' }).then((data) => console.log(data))
   previousClose: string
   change: string
   changePercent: string
+}
+```
+
+---
+### Market Status Endpoint
+
+```js
+av.stockTimeSeries.marketStatus().then((data) => console.log(data))
+```
+
+## Enums
+
+```ts
+enum MarketType {
+  EQUTY = "Equity",
+  FOREX = "Forex",
+  CRYPTO = "Cryptocurrency",
+}
+```
+
+```ts
+enum MarketStatus {
+  OPEN = "open",
+  CLOSE = "close",
+}
+```
+
+**Response**
+
+```js
+{
+  endpoint: string;
+  markets:  [
+    {
+      marketType: MarketType;
+      region: string;
+      primaryExchanges: string;
+      localOpen: string;
+      localClose: string;
+      currentStatus: MarketStatus;
+      notes: string;
+    },
+    {
+      marketType: MarketType;
+      region: string;
+      primaryExchanges: string;
+      localOpen: string;
+      localClose: string;
+      currentStatus: MarketStatus;
+      notes: string;
+    },
+  ]
 }
 ```
 
